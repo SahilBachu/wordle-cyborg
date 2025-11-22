@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "./components/Header";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/msg")
-      .then((response) => setMessage(response.data.message))
-      .catch((error) => console.error("Error: ", error));
-  }, []);
-
   return (
     <div>
-      <h1>{message}</h1>
+      <Header />
     </div>
   );
 }

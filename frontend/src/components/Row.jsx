@@ -1,6 +1,9 @@
+// React component for each row in the wordle grid
+
 import Tile from "./Tile";
 import { motion } from "motion/react";
 
+// constants to set the row animation when word is revealed
 const rowVariants = {
   normal: { scale: 1 },
   flip: {
@@ -10,37 +13,36 @@ const rowVariants = {
   },
 };
 
+//word is the word to fill in
+//cols is the colors of each tile
+//flip decides whether the animation happens or not
 const Row = ({
   word = "",
   cols = ["bg-white", "bg-white", "bg-white", "bg-white", "bg-white"],
   flip = false,
 }) => {
-  let letter1 = word[0];
-  let letter2 = word[1];
-  let letter3 = word[2];
-  let letter4 = word[3];
-  let letter5 = word[4];
-
   return (
+    // this is the row
     <motion.div
       className="flex space-x-4"
       variants={rowVariants}
       animate={flip ? "flip" : "normal"}
     >
+      {/* each tile */}
       <div>
-        <Tile letter={letter1} bgColor={cols[0]} />
+        <Tile letter={word[0]} bgColor={cols[0]} />
       </div>
       <div>
-        <Tile letter={letter2} bgColor={cols[1]} />
+        <Tile letter={word[1]} bgColor={cols[1]} />
       </div>
       <div>
-        <Tile letter={letter3} bgColor={cols[2]} />
+        <Tile letter={word[2]} bgColor={cols[2]} />
       </div>
       <div>
-        <Tile letter={letter4} bgColor={cols[3]} />
+        <Tile letter={word[3]} bgColor={cols[3]} />
       </div>
       <div>
-        <Tile letter={letter5} bgColor={cols[4]} />
+        <Tile letter={word[4]} bgColor={cols[4]} />
       </div>
     </motion.div>
   );

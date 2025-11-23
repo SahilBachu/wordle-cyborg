@@ -1,7 +1,10 @@
+// React component for the entire Board Grid
+
 import CyborgToggle from "./CyborgToggle";
 import { motion } from "motion/react";
 import Row from "./Row";
 
+//constants for shake animation when answer is invalid
 const boardVariants = {
   normal: { scale: 1 },
   shake: {
@@ -9,6 +12,10 @@ const boardVariants = {
     transition: { duration: 0.5 },
   },
 };
+
+//Board component that takes in the word_list and color_list to fill the board
+//shaking, guesses and flipping for the animations
+//generateAiText for the AI function and AIsuggestion for its response
 
 const Board = ({
   word_list = ["", "", "", "", ""],
@@ -27,28 +34,33 @@ const Board = ({
   AIsuggestion,
 }) => {
   return (
+    // Board and CyborgControls
     <div className="h-screen flex justify-center items-center">
+      {/* Invisibile cyborg for center alignment */}
       <div className="flex space-x-20">
         <div className="invisible">
           <CyborgToggle />
         </div>
-
+        {/* Contains each row element */}
         <motion.div
           className="flex-col space-y-4"
           animate={shaking ? "shake" : "normal"}
           variants={boardVariants}
           initial={{ scale: [0.5, 1] }}
         >
+          {/* map each word to a row */}
           {word_list.map((item, index) => (
             <div>
               <Row
                 word={item}
+                // use index to map the color too
                 cols={color_list[index]}
                 flip={flipping ? (guesses - 1 === index ? true : false) : false}
               />
             </div>
           ))}
         </motion.div>
+        {/* Cyborg toggle with neccesary text and function */}
         <CyborgToggle
           generateAiText={GenerateAiText}
           textToDisplay={AIsuggestion}

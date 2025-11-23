@@ -1,3 +1,5 @@
+// React component for all the Cyber UI
+
 import React, { useState } from "react";
 import cyborg_filled from "../assets/cyborg-filled.png";
 import cyborg_unfilled from "../assets/cyborg-unfilled.png";
@@ -7,24 +9,30 @@ const CyborgToggle = ({ textToDisplay = "Loading...", generateAiText }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [showText, setShowText] = useState(false);
 
+  // change isChecked when the CyberToggle is flipped
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
+  // Set the text of the paragraph when AI generates it
   const handleTextChange = () => {
     setShowText(!showText);
     generateAiText();
   };
 
+  //if checked then the image fills out
   let image_src = isChecked ? cyborg_filled : cyborg_unfilled;
 
   return (
+    // full cyborg div
     <div className="flex-col space-y-1">
+      {/* Cyborg image */}
       <img
         className="h-auto max-w-full ml-1"
         src={image_src}
         alt="cyborg image"
       ></img>
+      {/* the CyborgSlider */}
       <label className="flex cursor-pointer select-none items-center ml-3">
         <div className="relative">
           <input
@@ -33,11 +41,13 @@ const CyborgToggle = ({ textToDisplay = "Loading...", generateAiText }) => {
             onChange={handleCheckboxChange}
             className="sr-only"
           />
+          {/* background of the slider */}
           <div
             className={`box block h-8 w-14 rounded-full ${
               isChecked ? "bg-red-700" : "bg-gray-200"
             }`}
           ></div>
+          {/* the slider that moves */}
           <div
             className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full transition ${
               isChecked ? "translate-x-full bg-gray-50" : "bg-black"
@@ -45,6 +55,7 @@ const CyborgToggle = ({ textToDisplay = "Loading...", generateAiText }) => {
           ></div>
         </div>
       </label>
+      {/* 'CyberMode' text display */}
       <p
         className={`text-base text-heading font-medium pr-10 ${
           isChecked ? "text-red-700" : "text-black"
@@ -52,6 +63,7 @@ const CyborgToggle = ({ textToDisplay = "Loading...", generateAiText }) => {
       >
         CyberMode
       </p>
+      {/* if checked, show the Generate button */}
       {isChecked && (
         <motion.div
           whileHover={{ scale: 1.2 }}
@@ -64,7 +76,7 @@ const CyborgToggle = ({ textToDisplay = "Loading...", generateAiText }) => {
           </p>
         </motion.div>
       )}
-
+      {/* If generate button is clicked, show the text from AI */}
       {showText && (
         <p className="justify-center text-black font-serif text-sm whitespace-nowrap overflow-hidden text-ellipsis">
           {textToDisplay}

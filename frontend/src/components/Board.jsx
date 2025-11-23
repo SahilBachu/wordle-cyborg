@@ -1,8 +1,17 @@
 import CyborgToggle from "./CyborgToggle";
+import { motion } from "motion/react";
 import Row from "./Row";
 
+const boardVariants = {
+  normal: { scale: 1 },
+  shake: {
+    x: [0, 10, 0, -10, 0, 10, 0, -10, 0],
+    transition: { duration: 0.5 },
+  },
+};
+
 const Board = ({
-  word_list = ["HEART", "HEART", "HEART", "HEART", "HEART"],
+  word_list = ["", "", "", "", ""],
   color_list = [
     ["bg-white", "bg-white", "bg-white", "bg-white", "bg-white"],
     ["bg-white", "bg-white", "bg-white", "bg-white", "bg-white"],
@@ -11,6 +20,11 @@ const Board = ({
     ["bg-white", "bg-white", "bg-white", "bg-white", "bg-white"],
     ["bg-white", "bg-white", "bg-white", "bg-white", "bg-white"],
   ],
+  shaking = false,
+  flipping = false,
+  guesses = 0,
+  GenerateAiText,
+  AIsuggestion,
 }) => {
   return (
     <div className="h-screen flex justify-center items-center">
@@ -19,27 +33,26 @@ const Board = ({
           <CyborgToggle />
         </div>
 
-        <div className="flex-col space-y-4">
-          <div>
-            <Row word={word_list[0]} cols={color_list[0]} />
-          </div>
-          <div>
-            <Row word={word_list[1]} cols={color_list[1]} />
-          </div>
-          <div>
-            <Row word={word_list[2]} cols={color_list[2]} />
-          </div>
-          <div>
-            <Row word={word_list[3]} cols={color_list[3]} />
-          </div>
-          <div>
-            <Row word={word_list[4]} cols={color_list[4]} />
-          </div>
-          <div>
-            <Row word={word_list[5]} cols={color_list[5]} />
-          </div>
-        </div>
-        <CyborgToggle />
+        <motion.div
+          className="flex-col space-y-4"
+          animate={shaking ? "shake" : "normal"}
+          variants={boardVariants}
+          initial={{ scale: [0.5, 1] }}
+        >
+          {word_list.map((item, index) => (
+            <div>
+              <Row
+                word={item}
+                cols={color_list[index]}
+                flip={flipping ? (guesses - 1 === index ? true : false) : false}
+              />
+            </div>
+          ))}
+        </motion.div>
+        <CyborgToggle
+          generateAiText={GenerateAiText}
+          textToDisplay={AIsuggestion}
+        />
       </div>
     </div>
   );

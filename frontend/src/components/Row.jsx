@@ -1,8 +1,19 @@
 import Tile from "./Tile";
+import { motion } from "motion/react";
+
+const rowVariants = {
+  normal: { scale: 1 },
+  flip: {
+    scale: [1.5, 1],
+    rotateX: [-90, 0, 90, 0],
+    transition: { duration: 0.5 },
+  },
+};
 
 const Row = ({
-  word = "HEART",
+  word = "",
   cols = ["bg-white", "bg-white", "bg-white", "bg-white", "bg-white"],
+  flip = false,
 }) => {
   let letter1 = word[0];
   let letter2 = word[1];
@@ -11,7 +22,11 @@ const Row = ({
   let letter5 = word[4];
 
   return (
-    <div className="flex space-x-4">
+    <motion.div
+      className="flex space-x-4"
+      variants={rowVariants}
+      animate={flip ? "flip" : "normal"}
+    >
       <div>
         <Tile letter={letter1} bgColor={cols[0]} />
       </div>
@@ -27,7 +42,7 @@ const Row = ({
       <div>
         <Tile letter={letter5} bgColor={cols[4]} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

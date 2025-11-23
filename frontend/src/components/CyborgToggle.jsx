@@ -16,7 +16,7 @@ const CyborgToggle = ({ textToDisplay = "Loading...", generateAiText }) => {
 
   // Set the text of the paragraph when AI generates it
   const handleTextChange = () => {
-    setShowText(!showText);
+    setShowText(true);
     generateAiText();
   };
 

@@ -32,12 +32,14 @@ const Board = ({
   guesses = 0,
   GenerateAiText,
   AIsuggestion,
+  cyberModeFunc,
+  cyborgMode,
 }) => {
   return (
     // Board and CyborgControls
     <div className="h-screen flex justify-center items-center">
       {/* Invisibile cyborg for center alignment */}
-      <div className="flex space-x-20">
+      <div className="flex space-x-5 md:space-x-20">
         <div className="invisible">
           <CyborgToggle />
         </div>
@@ -56,6 +58,7 @@ const Board = ({
                 // use index to map the color too
                 cols={color_list[index]}
                 flip={flipping ? (guesses - 1 === index ? true : false) : false}
+                cyborgmode={cyborgMode}
               />
             </div>
           ))}
@@ -64,6 +67,7 @@ const Board = ({
         <CyborgToggle
           generateAiText={GenerateAiText}
           textToDisplay={AIsuggestion}
+          cyberModefunc={cyberModeFunc}
         />
       </div>
     </div>

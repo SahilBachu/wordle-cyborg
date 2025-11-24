@@ -8,11 +8,16 @@ const tileVariants = {
   notEmpty: { scale: [1.5, 1], transition: { duration: 0.2 } },
 };
 
-function Tile({ bgColor = "bg-white", letter = "" }) {
+function Tile({ bgColor = "bg-white", letter = "", cyborgMode }) {
+  let borderColor = "border-black";
+  if (cyborgMode) {
+    borderColor = "border-white";
+  }
+
   return (
     // the tile itself
     <motion.div
-      className={`flex justify-center h-14 w-14 border border-black items-center rounded-b-sm ${bgColor} shadow-2xl`}
+      className={`flex justify-center h-14 w-14 border ${borderColor} items-center rounded-b-sm ${bgColor} shadow-2xl`}
       animate={letter === "" ? "empty" : "notEmpty"}
       variants={tileVariants}
     >

@@ -6,6 +6,7 @@ import Board from "./components/Board";
 import wordleWords from "./assets/wordles.js";
 import validWords from "./assets/validWords.js";
 import axios from "axios"; //for API request
+import { motion } from "motion/react";
 //predefining the colors
 let correctColor = "bg-green-500";
 let halfCorrectColor = "bg-yellow-500";
@@ -16,6 +17,12 @@ const wordleWordArray = wordleWords.split(/\r?\n/);
 const validWordsArray = validWords.split(/\r?\n/);
 const worldeWordsSet = new Set(wordleWordArray);
 const validWordsSet = new Set(validWordsArray);
+
+//variants for animation for the cyborgToggle
+const cyborgVariants = {
+  notCyborg: { backgroundColor: "#FFFFFF" },
+  cyborg: { backgroundColor: "#B91C1C", transition: { duration: 4 } },
+};
 
 //generates a random word for the solution
 function randomWordGenerator() {
@@ -126,7 +133,12 @@ function App() {
   const [isShaking, setIsShaking] = useState(false);
   const [isFlipping, setIsFlipping] = useState(false);
   const [aiSuggestion, setAISuggestion] = useState("");
+  const [cyberMode, setCyberMode] = useState(false);
   console.log(solution);
+
+  const toggleCyberMode = () => {
+    setCyberMode(!cyberMode);
+  };
 
   //API function to create JSON and get response from flask
   const generateAIText = async () => {
@@ -205,17 +217,24 @@ function App() {
   let all_colors = getColorArray(guesses, solution);
 
   return (
-    <div>
-      <Header />
-      <Board
-        word_list={all_words}
-        color_list={all_colors}
-        shaking={isShaking}
-        flipping={isFlipping}
-        guesses={guesses.length}
-        GenerateAiText={generateAIText}
-        AIsuggestion={aiSuggestion}
-      />
+    <div className="bg-white overflow-hidden md:overflow-scroll">
+      <Header cyberModeBool={cyberMode} />
+      <motion.div
+        animate={cyberMode ? "cyborg" : "notCyborg"}
+        variants={cyborgVariants}
+      >
+        <Board
+          word_list={all_words}
+          color_list={all_colors}
+          shaking={isShaking}
+          flipping={isFlipping}
+          guesses={guesses.length}
+          GenerateAiText={generateAIText}
+          AIsuggestion={aiSuggestion}
+          cyberModeFunc={toggleCyberMode}
+          cyborgMode={cyberMode}
+        />
+      </motion.div>
     </div>
   );
 }

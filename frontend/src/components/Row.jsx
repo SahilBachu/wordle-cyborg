@@ -20,6 +20,7 @@ const Row = ({
   word = "",
   cols = ["bg-white", "bg-white", "bg-white", "bg-white", "bg-white"],
   flip = false,
+  cyborgmode,
 }) => {
   return (
     // this is the row
@@ -30,19 +31,19 @@ const Row = ({
     >
       {/* each tile */}
       <div>
-        <Tile letter={word[0]} bgColor={cols[0]} />
+        <Tile letter={word[0]} bgColor={cols[0]} cyborgMode={cyborgmode} />
       </div>
       <div>
-        <Tile letter={word[1]} bgColor={cols[1]} />
+        <Tile letter={word[1]} bgColor={cols[1]} cyborgMode={cyborgmode} />
       </div>
       <div>
-        <Tile letter={word[2]} bgColor={cols[2]} />
+        <Tile letter={word[2]} bgColor={cols[2]} cyborgMode={cyborgmode} />
       </div>
       <div>
-        <Tile letter={word[3]} bgColor={cols[3]} />
+        <Tile letter={word[3]} bgColor={cols[3]} cyborgMode={cyborgmode} />
       </div>
       <div>
-        <Tile letter={word[4]} bgColor={cols[4]} />
+        <Tile letter={word[4]} bgColor={cols[4]} cyborgMode={cyborgmode} />
       </div>
     </motion.div>
   );

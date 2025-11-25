@@ -18,7 +18,7 @@ const Header = ({ cyberModeBool }) => {
     <nav className={`${bgColor} fixed w-full z-20 top-0 left-0`}>
       {/* left side */}
       <div className="w-full flex flex-wrap items-center justify-center md:justify-between mx-auto p-4 md:px-8">
-        <img src={imgSrc} className="h-20 md:h-24" alt="Flowbite Logo" />
+        <img src={imgSrc} className="h-20 md:h-24" alt="Wordle(ws) Logo" />
         {/* right side list */}
         <div className="w-auto hidden md:block">
           <ul className="flex flex-row md:space-x-4">

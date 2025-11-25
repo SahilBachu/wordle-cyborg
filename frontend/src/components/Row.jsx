@@ -25,7 +25,7 @@ const Row = ({
   return (
     // this is the row
     <motion.div
-      className="flex space-x-4"
+      className="flex space-x-1.5 md:space-x-4"
       variants={rowVariants}
       animate={flip ? "flip" : "normal"}
     >

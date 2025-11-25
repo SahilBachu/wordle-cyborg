@@ -10,7 +10,7 @@ import { motion } from "motion/react";
 //predefining the colors
 let correctColor = "bg-green-500";
 let halfCorrectColor = "bg-yellow-500";
-let wrongColor = "bg-red-700";
+let wrongColor = "bg-red-600";
 
 //constructing array and set from txt files for answers and valid words
 const wordleWordArray = wordleWords.split(/\r?\n/);
@@ -21,7 +21,7 @@ const validWordsSet = new Set(validWordsArray);
 //variants for animation for the cyborgToggle
 const cyborgVariants = {
   notCyborg: { backgroundColor: "#FFFFFF" },
-  cyborg: { backgroundColor: "#B91C1C", transition: { duration: 4 } },
+  cyborg: { backgroundColor: "#B91C1C", transition: { duration: 2 } },
 };
 
 //generates a random word for the solution
@@ -40,7 +40,7 @@ function isValidWord(word) {
   const wordLower = word.toLowerCase();
   const isPresent =
     validWordsSet.has(wordLower) || worldeWordsSet.has(wordLower);
-  console.log(isPresent);
+
   return isPresent;
 }
 
@@ -134,7 +134,6 @@ function App() {
   const [isFlipping, setIsFlipping] = useState(false);
   const [aiSuggestion, setAISuggestion] = useState("");
   const [cyberMode, setCyberMode] = useState(false);
-  console.log(solution);
 
   const toggleCyberMode = () => {
     setCyberMode(!cyberMode);
@@ -217,9 +216,10 @@ function App() {
   let all_colors = getColorArray(guesses, solution);
 
   return (
-    <div className="bg-white overflow-hidden md:overflow-scroll">
+    <div className="min-h-screen overflow-hidden bg-white">
       <Header cyberModeBool={cyberMode} />
       <motion.div
+        className="min-h-screen"
         animate={cyberMode ? "cyborg" : "notCyborg"}
         variants={cyborgVariants}
       >

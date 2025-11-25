@@ -17,12 +17,14 @@ function Tile({ bgColor = "bg-white", letter = "", cyborgMode }) {
   return (
     // the tile itself
     <motion.div
-      className={`flex justify-center h-14 w-14 border ${borderColor} items-center rounded-b-sm ${bgColor} shadow-2xl`}
+      className={`flex justify-center h-12 w-12 md:h-14 md:w-14 border ${borderColor} items-center rounded-b-sm ${bgColor} shadow-2xl`}
       animate={letter === "" ? "empty" : "notEmpty"}
       variants={tileVariants}
     >
       {/* the letter inside the tile */}
-      <span className="text-black text-4xl font-semibold">{letter}</span>
+      <span className="text-black text-2xl md:text-4xl font-semibold">
+        {letter}
+      </span>
     </motion.div>
   );
 }

@@ -22,7 +22,7 @@ def entropySolver(jsonObject):
         symbols =""
         for j in range(0, 5):
             color = color_history[i][j]
-            if color == "bg-red-700":
+            if color == "bg-red-600":
                 symbols+="X"
             elif color == "bg-yellow-500":
                 symbols+="Y"

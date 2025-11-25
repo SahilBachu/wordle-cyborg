@@ -76,7 +76,7 @@ const CyborgToggle = ({
           className="h-5 w-30 rounded-s-2xl rounded-e-2xl justify-center flex items-center"
           animate={{
             backgroundColor: ["#B91C1C", "#000000"],
-            transition: { duration: 4 },
+            transition: { duration: 2 },
           }}
           onClick={handleTextChange}
         >

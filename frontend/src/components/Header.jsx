@@ -15,15 +15,18 @@ const Header = ({ cyberModeBool }) => {
   }
   return (
     //wole div
-    <nav className={`${bgColor} fixed w-full z-20`}>
+    <nav className={`${bgColor} fixed w-full z-20 top-0 left-0`}>
       {/* left side */}
-      <div className="w-max md:w-auto flex flex-wrap items-center justify-between mx-auto p-4">
-        <img src={imgSrc} className="h-24" alt="Flowbite Logo" />
+      <div className="w-full flex flex-wrap items-center justify-center md:justify-between mx-auto p-4 md:px-8">
+        <img src={imgSrc} className="h-20 md:h-24" alt="Flowbite Logo" />
         {/* right side list */}
-        <div className="w-full md:block md:w-auto hidden">
-          <ul className="flex md:flex-row md:space-x-4">
+        <div className="w-auto hidden md:block">
+          <ul className="flex flex-row md:space-x-4">
             <li>
-              <a href="#" className={`block py-2 px-3 ${textColorNav} pr-12`}>
+              <a
+                href="#"
+                className={`block py-2 px-3 ${textColorNav} md:pr-12`}
+              >
                 About
               </a>
             </li>

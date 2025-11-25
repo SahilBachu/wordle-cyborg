@@ -37,15 +37,15 @@ const Board = ({
 }) => {
   return (
     // Board and CyborgControls
-    <div className="h-screen flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center pt-24 md:pt-0 pb-10 md:pb-0">
       {/* Invisibile cyborg for center alignment */}
-      <div className="flex space-x-5 md:space-x-20">
-        <div className="invisible">
+      <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-20">
+        <div className="invisible hidden md:block">
           <CyborgToggle />
         </div>
         {/* Contains each row element */}
         <motion.div
-          className="flex-col space-y-4"
+          className="flex-col space-y-2 md:space-y-4"
           animate={shaking ? "shake" : "normal"}
           variants={boardVariants}
           initial={{ scale: [0.5, 1] }}

@@ -152,7 +152,7 @@ function App() {
     try {
       //API fetch
       const response = await axios.post(
-        "http://127.0.0.1:5000/suggest",
+        `${import.meta.env.VITE_API_URL}/suggest`,
         dataObject
       );
       //set the suggestion to the received word and re-render

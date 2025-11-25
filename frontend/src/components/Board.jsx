@@ -34,6 +34,7 @@ const Board = ({
   AIsuggestion,
   cyberModeFunc,
   cyborgMode,
+  thinking,
 }) => {
   return (
     // Board and CyborgControls
@@ -68,6 +69,7 @@ const Board = ({
           generateAiText={GenerateAiText}
           textToDisplay={AIsuggestion}
           cyberModefunc={cyberModeFunc}
+          isThinking={thinking}
         />
       </div>
     </div>

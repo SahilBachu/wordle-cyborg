@@ -134,6 +134,7 @@ function App() {
   const [isFlipping, setIsFlipping] = useState(false);
   const [aiSuggestion, setAISuggestion] = useState("");
   const [cyberMode, setCyberMode] = useState(false);
+  const [isThinking, setIsThinking] = useState(false);
 
   const toggleCyberMode = () => {
     setCyberMode(!cyberMode);
@@ -142,6 +143,7 @@ function App() {
   //API function to create JSON and get response from flask
   const generateAIText = async () => {
     setAISuggestion("");
+    setIsThinking(true);
 
     //create object based on current history, axios converts it to JSON automatically
     const dataObject = {
@@ -159,6 +161,8 @@ function App() {
       setAISuggestion(response.data);
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsThinking(false);
     }
   };
   // if any key is pressed
@@ -233,6 +237,7 @@ function App() {
           AIsuggestion={aiSuggestion}
           cyberModeFunc={toggleCyberMode}
           cyborgMode={cyberMode}
+          thinking={isThinking}
         />
       </motion.div>
     </div>

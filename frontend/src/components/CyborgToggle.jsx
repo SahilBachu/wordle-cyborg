@@ -9,6 +9,7 @@ const CyborgToggle = ({
   textToDisplay = "Loading...",
   generateAiText,
   cyberModefunc,
+  isThinking,
 }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [showText, setShowText] = useState(false);
@@ -21,6 +22,7 @@ const CyborgToggle = ({
 
   // Set the text of the paragraph when AI generates it
   const handleTextChange = () => {
+    if (isThinking) return;
     setShowText(true);
     generateAiText();
   };
@@ -81,12 +83,12 @@ const CyborgToggle = ({
           onClick={handleTextChange}
         >
           <p className="justify-center text-white font-serif text-sm whitespace-nowrap overflow-hidden text-ellipsis select-none">
-            Click to generate
+            {isThinking ? "Calculating..." : "Click to generate"}
           </p>
         </motion.div>
       )}
       {/* If generate button is clicked, show the text from AI */}
-      {showText && isChecked && (
+      {showText && isChecked && !isThinking && (
         <p className="justify-center text-black font-serif text-sm whitespace-nowrap overflow-hidden text-ellipsis pl-7">
           {textToDisplay}
         </p>

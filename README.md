@@ -3,7 +3,6 @@
 A Full Stack Wordle Clone featuring an integrated AI assistant powered by Information Theory.
 
 ![Project Screenshot](screenshot.png)
-_(Note: Replace this image with a screenshot of your actual game!)_
 
 ## About The Project
 
